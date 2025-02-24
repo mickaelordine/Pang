@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour
 
     private void checkList()
     {
-        StartCoroutine(checkListnew());
+        if(this != null)
+            StartCoroutine(checkListnew());
     }
     
     private void EndGameGood()

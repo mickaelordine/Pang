@@ -13,16 +13,17 @@ una volta sconfitto il livello si continua a quello successivo
 7. fai le animazioni - player DONE
 
 
+
+
 TODO
-1. il game manager mi da errore perchè provo ad accederci mentre è distrutto.
-Proviamo a fare dei check sull'attesa delle palle prima di registrarsi
+8. manca per le palle e per i power up
+   !! implementa **object pooling** per palle e ~~proiettili~~, così da rendere gestibile e scalabile un endless mode in cui
+   instanzi prefab di platform e palle position per provare a fare il record.
+9. 
+3. rifai il movimento del player perchè fa cacare, in più aggiungici lo state pattern che determina se (idle,moving,climbing,falling) e collega queste info all'animator
 
 2. fai UI (manca gestione menu opzioni e il menu di pausa nel gioco e UI in Game coi controlli fatti a bottone) 
-rifai ui opzioni con le percentuali
+rifai ui opzioni con le percentuali del main menu
 
-6. setta la dimensione dello schermo alla safe area
+6. setta la dimensione dello schermo alla safe area per la UI e inserisci bande nere per chi  ha uno schermo più grande del 18:9 1920x1080
 
-
-
----------- Domande da fare al prof? ----------
-8. PlayerPref come funzionano e se vengono utilizzate di solito nei progetti

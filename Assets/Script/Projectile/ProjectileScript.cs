@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Script.Character;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,31 +11,51 @@ public class ProjectileScript : MonoBehaviour
     [SerializeField]
     private Animator animator;
     
-    GameObject creator = null;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // reference to the PooledObject component so we can return to the pool
+    private PooledObject pooledObject;
+    
+    private GameObject creator = null;
+    
+    private void Awake()
+    {
+        pooledObject = GetComponent<PooledObject>();
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(!animator.GetBool("IsTouchingSomething"))
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + speed, 0);
+        if (!animator.GetBool("IsTouchingSomething"))
+        {
+            transform.position += Vector3.up * (speed * Time.fixedDeltaTime);
+        }
+            
     }
 
     IEnumerator DestroyingTimer()
     {
         yield return new WaitForSeconds(0.15f);
-        Destroy(gameObject);
+        pooledObject.Release();
+        pooledObject.gameObject.SetActive(false);
+    }
+    
+    public void Deactivate()
+    {
+        StartCoroutine(DestroyingTimer());
+    }
+
+    private void OnEnable()
+    {
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.name);
         //tell the player that can shoot again
         if (creator != null)
-            creator.GetComponent<CharacterMovement>().canShoot = true;
+            creator.GetComponent<CharacterShoot>().canShoot = true;
         animator.SetBool("IsTouchingSomething", true); // istouchingsomething id
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
-        StartCoroutine(DestroyingTimer()); //calling a timer to make the projectile death anim visibile
+        Deactivate();
     }
 
     public void SetCreator(GameObject p_creator)

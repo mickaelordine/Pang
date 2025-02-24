@@ -16,9 +16,9 @@ public class AudioSettings : MonoBehaviour
     void Start()
     {
         // Initialize scrollbars from saved PlayerPrefs or default values
-        masterScrollbar.value = PlayerPrefs.GetFloat("Master", 0.5f);
-        musicScrollbar.value = PlayerPrefs.GetFloat("Music", 0.5f);
-        sfxScrollbar.value = PlayerPrefs.GetFloat("SFX", 0.5f);
+        masterScrollbar.value = PlayerPrefs.GetFloat("Master");
+        musicScrollbar.value = PlayerPrefs.GetFloat("Music");
+        sfxScrollbar.value = PlayerPrefs.GetFloat("SFX");
 
         // Attach listeners to handle value changes
         masterScrollbar.onValueChanged.AddListener(SetMasterVolume);
