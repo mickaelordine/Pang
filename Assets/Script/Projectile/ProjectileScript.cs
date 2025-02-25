@@ -3,6 +3,7 @@ using System.Collections;
 using Script.Character;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class ProjectileScript : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ProjectileScript : MonoBehaviour
     private float speed = 0.01f;
     [SerializeField]
     private Animator animator;
+    private CharacterShoot.ShootType shooterType;
     
     // reference to the PooledObject component so we can return to the pool
     private PooledObject pooledObject;
@@ -52,14 +54,20 @@ public class ProjectileScript : MonoBehaviour
     {
         //tell the player that can shoot again
         if (creator != null)
-            creator.GetComponent<CharacterShoot>().canShoot = true;
+        {
+            CharacterShoot shootCompRef = creator.gameObject.GetComponent<CharacterShoot>();
+            if(shootCompRef.ammoAmount < shootCompRef.maxAmmo && shootCompRef.shooterType == this.shooterType)
+                shootCompRef.ammoAmount += 1;
+        }
+            
         animator.SetBool("IsTouchingSomething", true); // istouchingsomething id
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         Deactivate();
     }
 
-    public void SetCreator(GameObject p_creator)
+    public void SetCreator(GameObject p_creator, CharacterShoot.ShootType shooterType)
     {
         creator = p_creator;
+        this.shooterType = shooterType;
     }
 }

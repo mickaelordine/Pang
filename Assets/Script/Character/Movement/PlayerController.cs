@@ -12,8 +12,6 @@ namespace Script.Character.Movement
         [Header("Movement")]
         [Tooltip("Horizontal speed")]
         [SerializeField] private float moveSpeed = 5f;
-        [Tooltip("Rate of change for move speed")]
-        [SerializeField] private float acceleration = 10f;
 
         [Tooltip("Custom gravity for player")]
         [SerializeField] private float gravity = -15f;

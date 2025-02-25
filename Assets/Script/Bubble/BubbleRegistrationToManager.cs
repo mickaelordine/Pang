@@ -7,7 +7,7 @@ public class BubbleRegistrationToManager : MonoBehaviour, IBubble
     IEnumerator registerTimer()
     {
         yield return new WaitForSeconds(0.1f);
-        GameManager.Instance.AddBubble(this);
+        GameManager.Instance.AddBubble(gameObject);
     }
     private void Start()
     {
@@ -17,7 +17,6 @@ public class BubbleRegistrationToManager : MonoBehaviour, IBubble
 
     private void OnDestroy()
     {
-        GameManager.Instance.RemoveBubble(this);
+        GameManager.Instance.RemoveBubble(gameObject);
     }
-    
 }

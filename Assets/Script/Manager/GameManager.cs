@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private List<IBubble> bubbles = new List<IBubble>();
+    private List<GameObject> bubbles = new List<GameObject>();
     private static int _levelindex = 0;
+    private int points = 0;
+    private bool isFreezingActive = false;
     
     private void Awake()
     {
@@ -18,9 +20,12 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); // Assicura che esista un solo GameManager SINGLETON
     }
 
-    public void AddBubble(IBubble bubble)
+    /*BUBBLE CHECKER SECTION*/
+    public void AddBubble(GameObject bubble)
     {
         bubbles.Add(bubble);
+        if(isFreezingActive)
+            bubble.GetComponent<ScriptedBubbleMovement>().shouldFreeze = true;
     }
 
     private IEnumerator checkListnew()
@@ -34,29 +39,66 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RemoveBubble(IBubble bubble)
+    public void RemoveBubble(GameObject bubble)
     {
+        AddPoints(10);
         bubbles.Remove(bubble);
         checkList();
     }
-
-    public void EndGameBad()
-    {
-        //open the retry quit menu
-        SceneManager.LoadScene(0); //go to main menu
-    }
-
+    
     private void checkList()
     {
         if(this != null)
             StartCoroutine(checkListnew());
     }
     
+    /*ACTIONS SECTION*/
+    public void DestroyBubbles() //called by bomb powerUp
+    {
+        foreach (var elem in bubbles)
+        {
+            elem.GetComponent<DamageBubble>().DestroyBubble();
+        }
+    }
+    
+    public void AddPoints(int points)
+    {
+        this.points += points;
+        Debug.Log(this.points);
+    }
+
+    IEnumerator RemoveFreezing()
+    {
+        yield return new WaitForSeconds(3f);
+        foreach (var elem in bubbles)
+        {
+            elem.GetComponent<ScriptedBubbleMovement>().shouldFreeze = false;
+        }
+        isFreezingActive = false;
+    }
+    public void FreezeBubbles()
+    {
+        foreach (var elem in bubbles)
+        {
+            elem.GetComponent<ScriptedBubbleMovement>().shouldFreeze = true;
+        }
+        isFreezingActive = true;
+        StartCoroutine(RemoveFreezing());
+    }
+    
+    /*FINISH THE LEVEL SECTION*/
     private void EndGameGood()
     {
         SelectNextLevel();
     }
     
+    public void EndGameBad()
+    {
+        //open the retry quit menu
+        SceneManager.LoadScene(0); //go to main menu
+    }
+    
+    /*LEVEL SELECTION SECTION*/
     public void SelectNextLevel()
     {
         _levelindex++;
@@ -76,6 +118,4 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Level", _levelindex);
         SceneManager.LoadScene(_levelindex); // Load by build index
     }
-    
-    
 }

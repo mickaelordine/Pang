@@ -130,6 +130,9 @@ MonoBehaviour:
   projectileLayer:
     serializedVersion: 2
     m_Bits: 2048
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &9073018703479021566
 MonoBehaviour:
   m_ObjectHideFlags: 0

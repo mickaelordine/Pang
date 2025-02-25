@@ -16,6 +16,8 @@ public class ScriptedBubbleMovement : MonoBehaviour
     private Vector2 position;
     [SerializeField]
     AudioSource audioBounce;
+    [HideInInspector]
+    public bool shouldFreeze = false;
 
     void Start()
     {
@@ -28,23 +30,32 @@ public class ScriptedBubbleMovement : MonoBehaviour
      */
     void FixedUpdate()
     {
-        velocity.y += gravity * Time.fixedDeltaTime;
+        if (!shouldFreeze)
+        {
+            velocity.y += gravity * Time.fixedDeltaTime;
         
-        if (velocity.y > minBounceForce)
-        {
-            velocity.y = minBounceForce;
-        }else if (velocity.y < gravity)
-        {
-            velocity.y = gravity;
+            if (velocity.y > minBounceForce)
+            {
+                velocity.y = minBounceForce;
+            }else if (velocity.y < gravity)
+            {
+                velocity.y = gravity;
+            }
+            position += velocity * Time.fixedDeltaTime;
+        
+            transform.position = position;
         }
     }
 
-    void Update()
-    {
-        position += velocity * Time.deltaTime;
-        
-        transform.position = position;
-    }
+    // void Update()
+    // {
+    //     if (!shouldFreeze)
+    //     {
+    //     position += velocity * Time.deltaTime;
+    //     
+    //     transform.position = position;
+    //     }
+    // }
 
     void OnCollisionEnter(Collision collision) {
         

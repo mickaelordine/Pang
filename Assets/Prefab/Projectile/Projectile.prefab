@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3874282935531487043}
   - component: {fileID: 7713221151278561241}
   - component: {fileID: -7948657091743859224}
+  - component: {fileID: -4602646315971234581}
   m_Layer: 11
   m_Name: Projectile
   m_TagString: Untagged
@@ -103,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae42a38687104a4a9669991e347aaca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.03
+  speed: 7
   animator: {fileID: -7948657091743859224}
 --- !u!136 &3874282935531487043
 CapsuleCollider:
@@ -177,3 +178,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-4602646315971234581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112238270714920252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef4edb5f14b4b84e80f51b4018068b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

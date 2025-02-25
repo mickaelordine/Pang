@@ -21,7 +21,7 @@ public class DamageBubble : MonoBehaviour
         c_bubble2.GetComponent<ScriptedBubbleMovement>().velocity = new Vector2(2,5);
         c_bubble1.GetComponent<ScriptedBubbleMovement>().velocity = new Vector2(-2,5);
     }
-    private void DestroyBubble()
+    public void DestroyBubble()
     {
         if (childBubble != null)
         {
