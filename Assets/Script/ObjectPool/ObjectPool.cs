@@ -1,61 +1,67 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [SerializeField] 
-    private uint maxSize = 15; //max amount of pooledObj
-    [SerializeField]
-    private PooledObject pooledObject; //reference of the polledobj prefab, we can also use gameobj, but the we should acces to the component, in this way is much better
+    [SerializeField] private uint maxSize = 15; // Numero massimo di oggetti per tipo
+    [SerializeField] private List<PooledObject> pooledPrefabs; // Lista di prefabs diversi
     
-    private Stack<PooledObject> stack; //stack implementation for the poolledObjs
-
+    private Dictionary<PooledObject, Stack<PooledObject>> poolDictionary = new Dictionary<PooledObject, Stack<PooledObject>>();
 
     private void Start()
     {
-        SetUpPoll();
+        SetUpPool();
     }
 
-    /*
-        The SetupPool method populates the object pool . Create a new stack of
-        PooledObjects and then instantiate copies of the objectToPool to fill it with
-        initPoolSize elements . Invoke SetupPool in Start to make sure that it runs
-        once during gameplay
-     */
-    private void SetUpPoll()
+    private void SetUpPool()
     {
-        stack = new Stack<PooledObject>();
-        PooledObject instance = null;
-        for (int i = 0; i < maxSize; i++)
+        foreach (var prefab in pooledPrefabs)
         {
-            instance = Instantiate(pooledObject);
-            instance.Pool = this;
-            instance.gameObject.SetActive(false);
-            stack.Push(instance);
+            poolDictionary[prefab] = new Stack<PooledObject>();
+
+            for (int i = 0; i < maxSize; i++)
+            {
+                PooledObject instance = Instantiate(prefab);
+                instance.Pool = this;
+                instance.PrefabReference = prefab; // Memorizza il prefab originale
+                instance.gameObject.SetActive(false);
+                poolDictionary[prefab].Push(instance);
+            }
         }
     }
 
-    //return the firstactive obj in the pool
-    public PooledObject GetPooledObject()
+    public PooledObject GetPooledObject(PooledObject prefab)
     {
-        //if stack doesn't cointain enough objs, then instantiate new one in this case
-        if (stack.Count == 0)
+        if (!poolDictionary.ContainsKey(prefab))
         {
-            PooledObject instance = Instantiate(pooledObject);
-            instance.Pool = this;
-            stack.Push(instance);
+            Debug.LogWarning("Il prefab richiesto non esiste nel pool!\n");
+            return null;
         }
-        //otherwise pick a already present one in the pool
-        PooledObject newInstance = stack.Pop();
-        newInstance.gameObject.SetActive(true);
-        return newInstance;
+
+        // Se non ci sono più oggetti in pool, ne creiamo uno nuovo
+        if (poolDictionary[prefab].Count == 0)
+        {
+            PooledObject newInstance = Instantiate(prefab);
+            newInstance.Pool = this;
+            return newInstance;
+        }
+
+        PooledObject instance = poolDictionary[prefab].Pop();
+        instance.gameObject.SetActive(true);
+        return instance;
     }
-    
-    //replace the polledObj in the stack for a future re-use
+
     public void ReturnToPool(PooledObject pooledObject)
     {
-        stack.Push(pooledObject);
+        if (!poolDictionary.ContainsKey(pooledObject.PrefabReference))
+        {
+            Debug.LogWarning($"Tentativo di restituire un oggetto non gestito dal pool! Prefab: {pooledObject.PrefabReference}");
+            Destroy(pooledObject.gameObject);
+            return;
+        }
+
         pooledObject.gameObject.SetActive(false);
+        poolDictionary[pooledObject.PrefabReference].Push(pooledObject);
     }
 }

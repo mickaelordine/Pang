@@ -7,9 +7,10 @@ namespace Script.Character
     public class CharacterShoot : MonoBehaviour
     {
         [SerializeField]
-        GameObject projectile;
+        PooledObject projectilePooled;
         [SerializeField]
         ObjectPool projectilePool = null;
+        
         private InputSystem_Actions input = null;
         public int ammoAmount = 1;
         public int maxAmmo = 1;
@@ -45,7 +46,7 @@ namespace Script.Character
 
         private void HookShoot()
         {
-            GameObject pulledObject = projectilePool.GetPooledObject().gameObject;
+            GameObject pulledObject = projectilePool.GetPooledObject(projectilePooled).gameObject;
             if (pulledObject == null)
                 return;
             pulledObject.transform.position = transform.position; //set the position of the current pulledObj
@@ -55,8 +56,8 @@ namespace Script.Character
 
         private void DoubleBarrelShoot()
         {
-            GameObject pulledObject1 = projectilePool.GetPooledObject().gameObject;
-            GameObject pulledObject2 = projectilePool.GetPooledObject().gameObject;
+            GameObject pulledObject1 = projectilePool.GetPooledObject(projectilePooled).gameObject;
+            GameObject pulledObject2 = projectilePool.GetPooledObject(projectilePooled).gameObject;
             if (pulledObject1 == null)
                 return;
             if (pulledObject2 == null)
@@ -70,7 +71,7 @@ namespace Script.Character
 
         private void MachineGunShoot()
         {
-            GameObject pulledObject = projectilePool.GetPooledObject().gameObject;
+            GameObject pulledObject = projectilePool.GetPooledObject(projectilePooled).gameObject;
             if (pulledObject == null)
                 return;
             pulledObject.transform.position = transform.position; //set the position of the current pulledObj
@@ -80,7 +81,7 @@ namespace Script.Character
 
         private void GrapplingHookShoot()
         {
-            GameObject pulledObject = projectilePool.GetPooledObject().gameObject;
+            GameObject pulledObject = projectilePool.GetPooledObject(projectilePooled).gameObject;
             if (pulledObject == null)
                 return;
             pulledObject.transform.position = transform.position; //set the position of the current pulledObj

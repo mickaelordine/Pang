@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8730880282390560270}
   - component: {fileID: 5984914415372710493}
   - component: {fileID: 8209040655797407445}
+  - component: {fileID: -1207283449338736362}
   m_Layer: 0
   m_Name: ClockPickUp
   m_TagString: Untagged
@@ -261,3 +262,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1207283449338736362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6971978570693152754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef4edb5f14b4b84e80f51b4018068b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
