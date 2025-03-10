@@ -13,10 +13,10 @@ namespace Script.Character.Movement.StateMachine
         public ClimbingState climbingState;
         public IdleState idleState;
         //public FallingState fallingState; //maybe we doesn't need it
-
+        
         // event to notify other objects of the state change
         public event Action<IState> stateChanged;
-
+        
         // pass in necessary parameters into constructor 
         public PlayerStateMachine(PlayerController player, Animator animator)
         {
