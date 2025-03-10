@@ -1,0 +1,97 @@
+﻿# Unity YAML files - treat as text
+*.meta text
+*.unity text
+*.asset text
+*.prefab text
+*.mat text
+*.anim text
+*.controller text
+*.overrideController text
+*.physicMaterial text
+*.physicsMaterial2D text
+*.playable text
+*.mask text
+*.brush text
+*.flare text
+*.fontsettings text
+*.guiskin text
+*.giparams text
+*.renderTexture text
+*.spriteatlas text
+*.terrainlayer text
+*.mixer text
+*.shadervariants text
+*.shadergraph text
+*.asmdef text
+*.asmref text
+
+# Ensure text files that will be normalized (CRLF -> LF)
+* text=auto
+
+# Explicitly declare binary files
+*.jpg binary
+*.png binary
+*.gif binary
+*.bmp binary
+*.tga binary
+*.tiff binary
+*.tif binary
+*.psd binary
+*.ai binary
+*.iff binary
+*.pict binary
+*.dds binary
+*.xcf binary
+*.hdr binary
+*.exr binary
+
+# Audio
+*.mp3 binary
+*.ogg binary
+*.wav binary
+*.aiff binary
+*.aif binary
+*.mod binary
+*.it binary
+*.s3m binary
+*.xm binary
+
+# Video
+*.mov binary
+*.avi binary
+*.asf binary
+*.mpg binary
+*.mpeg binary
+*.mp4 binary
+
+# 3D Objects
+*.fbx binary
+*.obj binary
+*.max binary
+*.blend binary
+*.dae binary
+*.mb binary
+*.ma binary
+*.3ds binary
+*.dfx binary
+*.c4d binary
+*.lwo binary
+*.lwo2 binary
+*.abc binary
+*.3dm binary
+
+# Build
+*.dll binary
+*.pdb binary
+*.mdb binary
+
+# Packaging
+*.zip binary
+*.7z binary
+*.gz binary
+*.rar binary
+*.tar binary
+
+# Unity assets and bundles
+*.unitypackage binary
+*.bundle binary
