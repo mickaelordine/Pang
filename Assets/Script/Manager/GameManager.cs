@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class GameManager : MonoBehaviour
     private static int _levelindex = 0;
     private int points = 0;
     private bool isFreezingActive = false;
+    
+    [SerializeField]
+    private ObjectPool powerUpPool;
+    [SerializeField]
+    private List<PooledObject> powerUpPoolled;
     
     private void Awake()
     {
@@ -39,9 +45,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void SpawnPowerUp(GameObject bubble) 
+    {
+        Random random = new Random();
+        GameObject pulledObject = powerUpPool.GetPooledObject(powerUpPoolled[random.Next(0,powerUpPoolled.Count)]).gameObject; //get a value in the powerUpRange
+        if (pulledObject == null)
+            return;
+        pulledObject.transform.position = bubble.transform.position; //set the position of the current pulledObj
+        }
+
     public void RemoveBubble(GameObject bubble)
     {
+        Random random = new Random();
         AddPoints(10);
+        if(random.Next(0,2) % 2 == 0) //50% of spawn rate
+            SpawnPowerUp(bubble);
         bubbles.Remove(bubble);
         checkList();
     }
@@ -64,7 +82,6 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int points)
     {
         this.points += points;
-        Debug.Log(this.points);
     }
 
     IEnumerator RemoveFreezing()

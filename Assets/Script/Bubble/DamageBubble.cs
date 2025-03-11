@@ -10,7 +10,6 @@ public class DamageBubble : MonoBehaviour
     [SerializeField] 
     private LayerMask playerLayer;
 
-
     private void SpawnChildBubble()
     {
         //spawn 2 child prefab

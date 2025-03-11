@@ -44,3 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40e979bb508e1a48b6e62285fe125cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUpPool: {fileID: 0}
+  powerUpPoolled:
+  - {fileID: 8812846068075935025, guid: 971f2e93cfd68a24cb06bc08f05a3a1a, type: 3}
+  - {fileID: 7204889219820853258, guid: 80c36abdfbeaf7444b41ad4261cdbf7d, type: 3}
+  - {fileID: -6499864626238776562, guid: 0ae6cee39c7f9c34ebd4a60074d74f19, type: 3}
+  - {fileID: -13827462319958727, guid: 41c3d6700c491704a9474d62fb32c5b3, type: 3}
+  - {fileID: 2187217603149696735, guid: 1274c55288e153542b6d2e4adafb5b5c, type: 3}
+  - {fileID: 9079587295482972943, guid: e0f15cd859edce4408f8b23e05c2cafc, type: 3}
+  - {fileID: -1207283449338736362, guid: 2fff2c115f3f95d4dbe410972e590b13, type: 3}
