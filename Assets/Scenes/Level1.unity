@@ -1711,11 +1711,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!95 &1085777672 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2127867743426665219, guid: 519bc2606b88ed141a5df1e854f2978a, type: 3}
-  m_PrefabInstance: {fileID: 2075531216}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1117790695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,10 +2296,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ---PowerUpPool---
       objectReference: {fileID: 0}
-    - target: {fileID: 3971675335542093484, guid: 15cbd5831ac99a04cacc0a0fb1c63e75, type: 3}
-      propertyPath: maxSize
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8533283062164797175, guid: 15cbd5831ac99a04cacc0a0fb1c63e75, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.0125071
@@ -2574,20 +2565,11 @@ PrefabInstance:
       propertyPath: projectilePool
       value: 
       objectReference: {fileID: 815876978}
-    - target: {fileID: 5523611231004660755, guid: 519bc2606b88ed141a5df1e854f2978a, type: 3}
-      propertyPath: projectilePooled
-      value: 
-      objectReference: {fileID: -4602646315971234581, guid: 28c2d3cf82d39d147bb42867561d49f7, type: 3}
     - target: {fileID: 7925358527897530681, guid: 519bc2606b88ed141a5df1e854f2978a, type: 3}
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
-    - target: {fileID: 7989852936950238339, guid: 519bc2606b88ed141a5df1e854f2978a, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1085777672}
-    m_RemovedComponents:
-    - {fileID: 5036463087563096902, guid: 519bc2606b88ed141a5df1e854f2978a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -2970,22 +2952,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3352726169789227553, guid: 50dea7d0c9f352c49bae5d3ae62910a6, type: 3}
-      propertyPath: Priority
-      value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 3352726169789227553, guid: 50dea7d0c9f352c49bae5d3ae62910a6, type: 3}
-      propertyPath: m_Resource
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3352726169789227553, guid: 50dea7d0c9f352c49bae5d3ae62910a6, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3352726169789227553, guid: 50dea7d0c9f352c49bae5d3ae62910a6, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3700671532778624741, guid: 50dea7d0c9f352c49bae5d3ae62910a6, type: 3}
       propertyPath: powerUpPool
       value: 
