@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Script.PowerUp.Types
 {
@@ -6,10 +8,12 @@ namespace Script.PowerUp.Types
     {
         [SerializeField]
         private AudioSource audioSource;
+
+        private List<GameObject> bubbles = null;
         protected override void ApplyEffect(Collider component)
         {
             audioSource.Play();
-            GameManager.Instance.FreezeBubbles();
+            GameManager.Instance.GetPowerUpManager().FreezeBubbles();
         }
     }
 }

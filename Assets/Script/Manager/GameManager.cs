@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,14 +12,36 @@ public class GameManager : MonoBehaviour
     private static int _levelindex = 0;
     private int points = 0;
     private bool isFreezingActive = false;
-    
+    private PowerUpManager powerUpManager;
+
+    /*GETTERS AND SETTERS*/
+    public PowerUpManager GetPowerUpManager()
+    {
+        return powerUpManager;
+    }
+
+    public List<GameObject> GetBubbles()
+    {
+        return bubbles;
+    }
+
+    public void SetIsFreezingActive(bool isActive)
+    {
+        this.isFreezingActive = isActive;
+    }
+
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            powerUpManager = GetComponent<PowerUpManager>();
+        }
         else
             Destroy(gameObject); // Assicura che esista un solo GameManager SINGLETON
     }
+    
+    
 
     /*BUBBLE CHECKER SECTION*/
     public void AddBubble(GameObject bubble)
@@ -41,7 +64,10 @@ public class GameManager : MonoBehaviour
 
     public void RemoveBubble(GameObject bubble)
     {
+        Random random = new Random();
         AddPoints(10);
+        if(random.Next(0,2) % 2 == 0) //50% of spawn rate
+            powerUpManager.SpawnPowerUp(bubble);
         bubbles.Remove(bubble);
         checkList();
     }
@@ -52,39 +78,12 @@ public class GameManager : MonoBehaviour
             StartCoroutine(checkListnew());
     }
     
-    /*ACTIONS SECTION*/
-    public void DestroyBubbles() //called by bomb powerUp
-    {
-        foreach (var elem in bubbles)
-        {
-            elem.GetComponent<DamageBubble>().DestroyBubble();
-        }
-    }
-    
     public void AddPoints(int points)
     {
         this.points += points;
-        Debug.Log(this.points);
     }
-
-    IEnumerator RemoveFreezing()
-    {
-        yield return new WaitForSeconds(3f);
-        foreach (var elem in bubbles)
-        {
-            elem.GetComponent<ScriptedBubbleMovement>().shouldFreeze = false;
-        }
-        isFreezingActive = false;
-    }
-    public void FreezeBubbles()
-    {
-        foreach (var elem in bubbles)
-        {
-            elem.GetComponent<ScriptedBubbleMovement>().shouldFreeze = true;
-        }
-        isFreezingActive = true;
-        StartCoroutine(RemoveFreezing());
-    }
+    
+    
     
     /*FINISH THE LEVEL SECTION*/
     private void EndGameGood()
@@ -97,6 +96,9 @@ public class GameManager : MonoBehaviour
         //open the retry quit menu
         SceneManager.LoadScene(0); //go to main menu
     }
+    
+    
+    
     
     /*LEVEL SELECTION SECTION*/
     public void SelectNextLevel()

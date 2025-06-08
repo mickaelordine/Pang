@@ -7,7 +7,7 @@ namespace Script.PowerUp.Types
     {
         protected override void ApplyEffect(Collider component)
         {
-            GameManager.Instance.DestroyBubbles();
+            GameManager.Instance.GetPowerUpManager().DestroyBubbles();
         }
     }
 }
