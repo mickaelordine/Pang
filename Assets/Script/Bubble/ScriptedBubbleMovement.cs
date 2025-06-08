@@ -24,30 +24,7 @@ public class ScriptedBubbleMovement : MonoBehaviour
         position = transform.position;
     }
 
-    /*
-     * !!remember
-     * every type of physic implementation and resolution msut be done in FixedUpdate(), because Physics come 1 frame before the Update()
-     */
-    // void FixedUpdate()
-    // {
-    //     if (!shouldFreeze)
-    //     {
-    //         velocity.y += gravity * Time.fixedDeltaTime;
-    //     
-    //         if (velocity.y > minBounceForce)
-    //         {
-    //             velocity.y = minBounceForce;
-    //         }else if (velocity.y < gravity)
-    //         {
-    //             velocity.y = gravity;
-    //         }
-    //         position += velocity * Time.fixedDeltaTime;
-    //     
-    //         transform.position = position;
-    //     }
-    // }
-
-    void Update()
+    void FixedUpdate()
     {
         if (!shouldFreeze)
         {
@@ -62,6 +39,10 @@ public class ScriptedBubbleMovement : MonoBehaviour
             }
             position += velocity * Time.deltaTime;
         
+            transform.position = position;
+        }
+        else
+        {
             transform.position = position;
         }
     }

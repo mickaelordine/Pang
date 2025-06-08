@@ -56,7 +56,6 @@ public class ObjectPool : MonoBehaviour
     {
         if (!poolDictionary.ContainsKey(pooledObject.PrefabReference))
         {
-            Debug.LogWarning($"Tentativo di restituire un oggetto non gestito dal pool! Prefab: {pooledObject.PrefabReference}");
             Destroy(pooledObject.gameObject);
             return;
         }

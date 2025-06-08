@@ -9,6 +9,7 @@ public class PooledObject : MonoBehaviour
     private PooledObject prefabReference;
     public PooledObject PrefabReference { get => prefabReference; set => prefabReference = value; }
     
+    
     /*
      * Calling Release disables the GameObject and returns it to the pool queue
      */

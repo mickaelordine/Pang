@@ -12,11 +12,8 @@ rifai ui opzioni con le percentuali del main menu
 
 !!riprendi da qui
 1. aggiustato l'object polling per i power up, manca sempre il punto 3 che è fondamentale prima di iniziare a fare un nuovo branch.
-    per questo, alcuni oggetti spawnati a volte non vanno verso il basso, capire perchè.
+    per questo, alcuni oggetti spawnati a volte non vanno verso il basso, capire perchè -> RISOLTO, NON RISETTAVO IL VALORE BOOLEANO SHOULDFALL = TRUE, LO LASCIAVO FALSE;
 
 2. metti a posto l'animazione quando sei nel cieling, per ora pensa di star cadendo
 
-3. refactora un po' il codice per fare decoupling tra il manager che fa troppe cose, pittosto crea un altro manger per la gestione dei powerup
-
 la frutta funziona ma bisogna vedere come gestire la UI in base al punteggio che è tenuto dentro il manager.
-capire come diminuire la responsabilità del manager rispetto a tutto il gioco e fare un po' di decoupling.

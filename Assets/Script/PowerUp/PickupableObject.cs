@@ -19,7 +19,6 @@ public abstract class PickupableObject<T> : MonoBehaviour where T : Component
     private float speed = 5f; // Velocità iniziale
     [SerializeField]
     private float gravity = -9.8f; // Gravità simulata
-    private Vector2 position;
     private bool shouldFall = true;
     // reference to the PooledObject component so we can return to the pool
     private PooledObject pooledObject = null;
@@ -30,10 +29,8 @@ public abstract class PickupableObject<T> : MonoBehaviour where T : Component
         pooledObject = gameObject.GetComponentInParent<PooledObject>(); //setting up the pooledObj reference
     }
     private void Start() => StartCoroutine(DestroyingTimer(lifeTime));
-    
 
-
-    void Update()
+    void FixedUpdate()
     {
         Movement();
     }
@@ -41,8 +38,11 @@ public abstract class PickupableObject<T> : MonoBehaviour where T : Component
     IEnumerator DestroyingTimer(float time)
     {
         yield return new WaitForSeconds(time);
+        
+        //reset the object information
         pooledObject.Release();
         pooledObject.gameObject.SetActive(false);
+        shouldFall = true;
     }
     
     private void Movement()
@@ -51,10 +51,7 @@ public abstract class PickupableObject<T> : MonoBehaviour where T : Component
         {
             transform.position += Vector3.down * (speed * Time.deltaTime);
         }
-        // else
-        // {
-        //     transform.position = Vector3.down * (0 * Time.deltaTime);
-        // }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -72,7 +69,6 @@ public abstract class PickupableObject<T> : MonoBehaviour where T : Component
         }else if ((groundMask.value & objLayerMask) != 0 || (cielingMask.value & objLayerMask) != 0)
         { 
             shouldFall = false;
-            Debug.Log(gameObject.name + " " + shouldFall);
         }
         
     }
