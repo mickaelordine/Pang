@@ -11,6 +11,11 @@ public class CharacterDamage : MonoBehaviour
     private int lives = 1;
     private bool m_isShielded = false;
 
+    private void Start()
+    {
+        ActivateShield();
+    }
+
     public void DeactivateShield()
     {
         m_isShielded = false;

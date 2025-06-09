@@ -31,7 +31,10 @@ namespace Script.Character
             input = new InputSystem_Actions();
         }
 
-        
+        public void Shoot()
+        {
+            input.Player.Attack.performed += OnAttackPerformed;
+        }
         private void OnEnable()
         {
             input.Enable();
