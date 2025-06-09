@@ -68,9 +68,7 @@ MonoBehaviour:
   - {fileID: 9079587295482972943, guid: e0f15cd859edce4408f8b23e05c2cafc, type: 3}
   - {fileID: -1207283449338736362, guid: 2fff2c115f3f95d4dbe410972e590b13, type: 3}
   - {fileID: 1942311055433656182, guid: 2fc375d3a2d36d3488d595862b931652, type: 3}
-  audioSource: {fileID: 3352726169789227553}
-  clipFreeze: {fileID: 8300000, guid: bcf35c512c855214e900ad026258ed5a, type: 3}
-  clipExplosion: {fileID: 8300000, guid: bcf35c512c855214e900ad026258ed5a, type: 3}
+  audioSource: {fileID: 0}
 --- !u!82 &3352726169789227553
 AudioSource:
   m_ObjectHideFlags: 0

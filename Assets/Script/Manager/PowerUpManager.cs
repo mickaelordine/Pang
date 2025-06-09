@@ -13,10 +13,6 @@ public class PowerUpManager : MonoBehaviour
     private List<GameObject> bubbles = null;
     [SerializeField]
     private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip clipFreeze;
-    [SerializeField]
-    private AudioClip clipExplosion;
     
     //SPAWN POWERUPS FUNCTIONS
     public void SpawnPowerUp(GameObject bubble) 
@@ -41,7 +37,6 @@ public class PowerUpManager : MonoBehaviour
     }
     public void FreezeBubbles()
     {
-        audioSource.PlayOneShot(clipFreeze);
         bubbles = GameManager.Instance.GetBubbles();
         foreach (var elem in bubbles)
         {
@@ -54,7 +49,6 @@ public class PowerUpManager : MonoBehaviour
     //BOMB POWERUP FUNCTION
     public void DestroyBubbles() //called by bomb powerUp
     {
-        audioSource.PlayOneShot(clipExplosion);
         bubbles = GameManager.Instance.GetBubbles();
         foreach (var elem in bubbles)
         {
