@@ -17,6 +17,7 @@ namespace Script.Character.Movement
         private bool isClimbing;
         private float xInput;
         private float yInput;
+        private bool isMovingLeft = false, isMovingRight = false, isMovingUp = false, isMovingDown = false;
         
         public void HandleInput()
         {
@@ -24,34 +25,72 @@ namespace Script.Character.Movement
             xInput = 0;
             yInput = 0;
 
-            if (Input.GetKey(upward))
+            if (Input.GetKey(upward) || isMovingUp)
             {
                 yInput++;
             }
 
-            if (Input.GetKey(backward))
+            if (Input.GetKey(backward) || isMovingDown)
             {
                 yInput--;
             }
 
-            if (Input.GetKey(left))
+            if (Input.GetKey(left) || isMovingLeft)
             {
                 xInput--;
             }
 
-            if (Input.GetKey(right))
+            if (Input.GetKey(right) || isMovingRight)
             {
                 xInput++;
             }
 
             inputVector = new Vector3(xInput, yInput, 0.0f);
-
-            //isJumping = Input.GetKeyDown(jump); find how to manage the isclimbing bool variable
         }
 
         private void Update()
         {
             HandleInput();
+        }
+
+
+        public void MoveLeft()
+        {
+            isMovingLeft = true;
+        }
+        public void MoveRight()
+        {
+            isMovingRight = true;
+        }
+        public void MoveUp()
+        {
+            isMovingUp = true;
+        }
+        public void MoveDown()
+        {
+            isMovingDown = true;
+        }
+        
+        public void StopMoveLeft()
+        {
+            isMovingLeft = false;
+        }
+        public void StopMoveRight()
+        {
+            isMovingRight = false;
+        }
+        public void StopMoveUp()
+        {
+            isMovingUp = false;
+        }
+        public void StopMoveDown()
+        {
+            isMovingDown = false;
+        }
+
+        private void Reset()
+        {
+            isMovingDown = isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
         }
         
     }

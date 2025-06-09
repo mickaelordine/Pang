@@ -8,11 +8,14 @@ using Random = System.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public event Action<int> OnScoreChanged;
+    
     private List<GameObject> bubbles = new List<GameObject>();
     private static int _levelindex = 0;
     private int points = 0;
     private bool isFreezingActive = false;
     private PowerUpManager powerUpManager;
+    
 
     /*GETTERS AND SETTERS*/
     public PowerUpManager GetPowerUpManager()
@@ -81,6 +84,7 @@ public class GameManager : MonoBehaviour
     public void AddPoints(int points)
     {
         this.points += points;
+        OnScoreChanged?.Invoke(this.points);
     }
     
     

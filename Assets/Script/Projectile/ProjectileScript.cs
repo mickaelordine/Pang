@@ -8,7 +8,7 @@ using UnityEngine.TextCore.Text;
 public class ProjectileScript : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 0.01f;
+    private float speed = 7.0f;
     [SerializeField]
     private Animator animator;
     private CharacterShoot.ShootType shooterType;

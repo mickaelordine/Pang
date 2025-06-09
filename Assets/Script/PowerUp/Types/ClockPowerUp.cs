@@ -12,7 +12,6 @@ namespace Script.PowerUp.Types
         private List<GameObject> bubbles = null;
         protected override void ApplyEffect(Collider component)
         {
-            audioSource.Play();
             GameManager.Instance.GetPowerUpManager().FreezeBubbles();
         }
     }
