@@ -108,6 +108,11 @@ public class GameManager : MonoBehaviour
     public void SelectNextLevel()
     {
         _levelindex++;
+        if (_levelindex >= SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(0); //go to main menu
+            return;
+        }
         PlayerPrefs.SetInt("Level", _levelindex);
         SceneManager.LoadScene(_levelindex); // Load by build index
     }

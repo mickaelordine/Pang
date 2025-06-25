@@ -27,7 +27,7 @@ public class MovementUIScript : MonoBehaviour
         SetupButton(_rightArrow, _playerInput.MoveRight, () => _playerInput.StopMoveRight());
         SetupButton(_upArrow, _playerInput.MoveUp, () => _playerInput.StopMoveUp());
         SetupButton(_downButton, _playerInput.MoveDown, () => _playerInput.StopMoveDown());
-        SetupButton(_shootButton, _playerShoot.Shoot, () => {});
+        SetupButton(_shootButton, _playerShoot.Shoot, () => { });
     }
 
     private void SetupButton(Button button, Action onPress, Action onRelease)

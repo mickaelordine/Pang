@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
+//using UnityEngine.InputSystem;
 
 namespace Script.Character
 {
@@ -31,21 +31,27 @@ namespace Script.Character
             input = new InputSystem_Actions();
         }
 
-        public void Shoot()
-        {
-            input.Player.Attack.performed += OnAttackPerformed;
-        }
-        private void OnEnable()
-        {
-            input.Enable();
-            input.Player.Attack.performed += OnAttackPerformed;
-        }
-
-        private void OnDisable()
-        {
-            input.Disable();
-            input.Player.Attack.performed -= OnAttackPerformed;
-        }
+        // public void Shoot()
+        // {
+        //     input.Player.Attack.performed += OnAttackPerformed;
+        // }
+        //
+        // public void RemoveShoot()
+        // {
+        //     input.Player.Attack.performed -= OnAttackPerformed;
+        // }
+        
+        // private void OnEnable()
+        // {
+        //     input.Enable();
+        //     input.Player.Attack.performed += OnAttackPerformed;
+        // }
+        //
+        // private void OnDisable()
+        // {
+        //     input.Disable();
+        //     input.Player.Attack.performed -= OnAttackPerformed;
+        // }
 
         private void HookShoot()
         {
@@ -92,7 +98,32 @@ namespace Script.Character
             ammoAmount -= 1;
         }
         
-        private void OnAttackPerformed(InputAction.CallbackContext value)
+        // private void OnAttackPerformed(InputAction.CallbackContext value)
+        // {
+        //     if (ammoAmount > 0)
+        //     {
+        //         switch (shooterType)
+        //         {
+        //             case ShootType.hook:
+        //                 HookShoot();
+        //                 break;
+        //             
+        //             case ShootType.doubleBarrel:
+        //                 DoubleBarrelShoot();
+        //                 break;
+        //             
+        //             case ShootType.grapplingHook:
+        //                 GrapplingHookShoot();
+        //                 break;
+        //             
+        //             case ShootType.heavyMachineGun:
+        //                 MachineGunShoot();
+        //                 break;
+        //         }
+        //     }
+        // }
+
+        public void Shoot()
         {
             if (ammoAmount > 0)
             {
@@ -115,7 +146,6 @@ namespace Script.Character
                         break;
                 }
             }
-            
         }
         
         
